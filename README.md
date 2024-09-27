@@ -1,2 +1,0 @@
-# -BLUBIA
-$Blubia Information
