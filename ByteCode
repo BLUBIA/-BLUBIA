@@ -1,0 +1,46 @@
+// Move bytecode v6
+module 3c524ee86d6a655dc199f50c5fc69af4d4eb75fae5901f5756b0436a31681c61.blubia {
+use 0000000000000000000000000000000000000000000000000000000000000001::option;
+use 0000000000000000000000000000000000000000000000000000000000000002::coin;
+use 0000000000000000000000000000000000000000000000000000000000000002::transfer;
+use 0000000000000000000000000000000000000000000000000000000000000002::tx_context;
+use 0000000000000000000000000000000000000000000000000000000000000002::url;
+
+
+struct BLUBIA has drop {
+	dummy_field: bool
+}
+
+
+
+init(Arg0: BLUBIA, Arg1: &mut TxContext) {
+B0:
+	0: MoveLoc[0](Arg0: BLUBIA)
+	1: LdConst[0](u8: 6)
+	2: LdConst[1](vector<u8>: "BLU..)
+	3: LdConst[2](vector<u8>: "Blu..)
+	4: LdConst[3](vector<u8>: "BLU..)
+	5: LdConst[4](vector<u8>: "htt..)
+	6: Call url::new_unsafe_from_bytes(vector<u8>): Url
+	7: Call option::some<Url>(Url): Option<Url>
+	8: CopyLoc[1](Arg1: &mut TxContext)
+	9: Call coin::create_currency<BLUBIA>(BLUBIA, u8, vector<u8>, vector<u8>, vector<u8>, Option<Url>, &mut TxContext): TreasuryCap<BLUBIA> * CoinMetadata<BLUBIA>
+	10: StLoc[2](loc0: CoinMetadata<BLUBIA>)
+	11: MoveLoc[1](Arg1: &mut TxContext)
+	12: FreezeRef
+	13: Call tx_context::sender(&TxContext): address
+	14: Call transfer::public_transfer<TreasuryCap<BLUBIA>>(TreasuryCap<BLUBIA>, address)
+	15: MoveLoc[2](loc0: CoinMetadata<BLUBIA>)
+	16: Call transfer::public_share_object<CoinMetadata<BLUBIA>>(CoinMetadata<BLUBIA>)
+	17: Ret
+
+}
+
+Constants [
+	0 => u8: 6
+	1 => vector<u8>: "BLUBIA" // interpreted as UTF8 string
+	2 => vector<u8>: "Blubia" // interpreted as UTF8 string
+	3 => vector<u8>: "BLUBIA is BLUB's wife and she is the reigning QUEEN of the SUI OCEAN!!!" // interpreted as UTF8 string
+	4 => vector<u8>: "https://api.movepump.com/uploads/copy11_69f73beb5c.png" // interpreted as UTF8 string
+]
+}
